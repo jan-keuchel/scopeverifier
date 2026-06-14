@@ -4,6 +4,7 @@ import csv
 import ipaddress
 import sys
 import shutil
+import time
 
 def read_file_into_list(file_path):
     res_list = []
@@ -75,12 +76,12 @@ def main():
 
     # --- Configure command line argument parser ---
     parser = argparse.ArgumentParser(description="Verify if a list of domains is inside a scope, defined by a list of IPv4 addresses.")
-    parser.add_argument("--domains",
+    parser.add_argument("-d", "--domains",
                         type=str,
                         required=True,
                         help="Path to file with a list of domains to check.")
 
-    parser.add_argument("--ips",
+    parser.add_argument("-i", "--ips",
                         type=str,
                         required=True,
                         help="Path to file with a list of in-scope IP addresses.")
@@ -100,8 +101,10 @@ def main():
     data = []
 
     print(f"Resolving {len(domains_input)} domains...")
+    print("(Delay between requests: 0.5 seconds.)")
     for d in domains_input:
         ips = get_domain_ips(d)
+        time.sleep(0.5)
         for ip in ips:
             data.append({
                 "domain": d, 

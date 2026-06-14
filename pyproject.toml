@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "scopeverifier"
-version = "0.1.0"
+version = "0.1.1"
 description = "scopeverifier checks if a list of domains is inside a scope which is defined by a list of IP addresses."
 readme = "README.md"
 requires-python = ">=3.9"
